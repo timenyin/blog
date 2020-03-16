@@ -1,0 +1,166 @@
+<?php
+    session_start();
+    function Message(){
+       if(isset($_SESSION["ErrorMessage"])){ 
+           $Output="<div class=\"alert alert-danger\">" ;
+           $Output.=htmlentities($_SESSION["ErrorMessage"]);
+           $Output.="</div>";
+           return $Output;
+       } 
+        
+    }
+
+?>
+
+
+
+
+<?php
+    $connection= mysql_connect('localhost', 'root' '');
+?><?php
+    $connectingdb= mysql_select_db('phpcms', '$connection');
+
+
+
+?>
+
+
+
+
+
+<?php require_once('include/db.php'); ?>
+<?php require_once('include/session.php'); ?>
+<?php
+    if(isset($_POST{"submit"})){
+    $Category=mysql_real_escape_string($_POST{"Category"});
+        date_default_timezone_set("Asia/Karachi");
+        $currenttime=time();  
+        $datetime=  strftime("%Y-%m-%d %H:%M:%S", $currenttime);  
+        $datetime=  strftime("%B-%d-%Y %H:%M:%S", $currenttime); 
+        $datetime;
+        if(empty($Category)){
+            
+        $_SESSION["ErrorMessage"]="All Field Must be Filled Out";
+            header("Location:dashboard.php");
+            exit;
+        }
+    }
+
+ 
+?>
+
+
+ <?php
+                  echo message();  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+            
+                ?>
+                
+                
+                
+                
+                
+                
+                
+                
+                ///cat.............
+                <?php
+$con= mysqli_connect("localhost", "root", "", "phpcms");
+if (mysqli_connect_errno());
+
+?>
+<?php require_once('include/db.php'); ?>
+<?php require_once('include/session.php'); ?>
+<?php require_once('include/function.php'); ?>
+<?php
+    if(isset($_POST{"submit"})){
+    $Category=mysqli_real_escape_string($_POST{"Category"});
+        //Geting time of your location
+        date_default_timezone_set("Asia/Karachi");
+        $currenttime=time();  
+        $datetime=  strftime("%Y-%m-%d %H:%M:%S", $currenttime);  
+        $datetime=  strftime("%B-%d-%Y %H:%M:%S", $currenttime); 
+        $datetime;
+        $Admin="harmony kunu"; 
+        if(strlen($Category)>9){   
+        $_SESSION["ErrorMessage"]="Too Long Name for Category";
+        Redirect_to("categories.php");
+        
+}   elseif(empty($Category)){
+        $_SESSION["ErrorMessage"]="All Field Must be Filled Out";
+        Redirect_to("categories.php");
+            
+}  
+         
+        
+    }
+
+ 
+?>
+
+session......................
+<?php
+//Geting the erro massage
+    session_start();
+    function Message(){
+       if(isset($_SESSION["ErrorMessage"])){ 
+           $Output="<div class=\"alert alert-danger\">" ;
+           $Output.=htmlentities($_SESSION["ErrorMessage"]);
+           $Output.="</div>";
+           $_SESSION["ErrorMessage"]=null;
+           return $Output;
+       } 
+        
+    }
+
+
+//Geting the massage successful
+ function SuccessMessage(){
+       if(isset($_SESSION["SuccessMessage"])){ 
+           $Output="<div class=\"alert alert-success\">" ;
+           $Output.=htmlentities($_SESSION["SuccessMessage()"]);
+           $Output.="</div>";
+           $_SESSION["SuccessMessage()"]=null;
+           return $Output;
+       } 
+        
+    }
+
+?>
+
+db..................
+<?php
+$con=mysqli_connect("localhost", "root", "", "phpcms");
+if (mysqli_connect_errno())
+    {
+        
+        echo "Failed to connect to Mysqli: ". mysqli_connect_error();
+    }
+?>
+
+dashb...........
+<div><?php  echo Message();
+                        echo SuccessMessage();
+                ?></div>
+                
+            ...................
+            <?php require_once('include/session.php'); ?>
+<?php require_once('include/function.php'); ?>
+
+
+
+
+.................function.........
+
+<?php
+ function Redirect_to($New_Location) {
+    header("Location:".$New_Location);
+            exit;
+    }
+?> 
